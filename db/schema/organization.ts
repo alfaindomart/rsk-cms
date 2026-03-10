@@ -1,7 +1,14 @@
 // Multi-tenant organizations and memberships with role-based access control
 
-import { relations, sql } from "drizzle-orm";
-import { index, pgTable, text, timestamp, unique } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import {
+  index,
+  pgTable,
+  text,
+  timestamp,
+  unique,
+  uuid,
+} from "drizzle-orm/pg-core";
 import { user } from "./user";
 
 /**
@@ -9,9 +16,7 @@ import { user } from "./user";
  * Each organization represents a separate tenant with isolated data.
  */
 export const organization = pgTable("organization", {
-  id: text()
-    .primaryKey()
-    .default(sql`gen_random_uuid()`),
+  id: uuid().primaryKey().defaultRandom(),
   name: text().notNull(),
   slug: text().notNull().unique(),
   logo: text(),
@@ -42,16 +47,14 @@ export type NewOrganization = typeof organization.$inferInsert;
 export const member = pgTable(
   "member",
   {
-    id: text()
-      .primaryKey()
-      .default(sql`gen_random_uuid()`),
-    userId: text()
+    id: uuid().primaryKey().defaultRandom(),
+    userId: uuid()
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
-    organizationId: text()
+    organizationId: uuid()
       .notNull()
       .references(() => organization.id, { onDelete: "cascade" }),
-    role: text().notNull(), // "owner" | "admin" | "member"
+    role: uuid().notNull(), // "owner" | "admin" | "member"
     createdAt: timestamp({ withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),

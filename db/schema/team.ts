@@ -1,7 +1,14 @@
 // Better Auth teams plugin tables
 
-import { relations, sql } from "drizzle-orm";
-import { index, pgTable, text, timestamp, unique } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import {
+  index,
+  pgTable,
+  text,
+  timestamp,
+  unique,
+  uuid,
+} from "drizzle-orm/pg-core";
 import { organization } from "./organization";
 import { user } from "./user";
 
@@ -12,11 +19,9 @@ import { user } from "./user";
 export const team = pgTable(
   "team",
   {
-    id: text()
-      .primaryKey()
-      .default(sql`gen_random_uuid()`),
+    id: uuid().primaryKey().defaultRandom(),
     name: text().notNull(),
-    organizationId: text()
+    organizationId: uuid()
       .notNull()
       .references(() => organization.id, { onDelete: "cascade" }),
     createdAt: timestamp({ withTimezone: true, mode: "date" })
@@ -40,13 +45,11 @@ export type NewTeam = typeof team.$inferInsert;
 export const teamMember = pgTable(
   "team_member",
   {
-    id: text()
-      .primaryKey()
-      .default(sql`gen_random_uuid()`),
-    teamId: text()
+    id: uuid().primaryKey().defaultRandom(),
+    teamId: uuid()
       .notNull()
       .references(() => team.id, { onDelete: "cascade" }),
-    userId: text()
+    userId: uuid()
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
     createdAt: timestamp({ withTimezone: true, mode: "date" })

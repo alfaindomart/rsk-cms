@@ -12,17 +12,17 @@
 
   // [ENV:PRODUCTION]
   // Command: bun wrangler deploy
-  "vars": {
+  /*  "vars": {
     "ENVIRONMENT": "production",
     "APP_NAME": "Example",
     "APP_ORIGIN": "https://example.com",
     "ALLOWED_ORIGINS": "https://example.com",
     "RESEND_EMAIL_FROM": "onboarding@resend.dev"
-  },
+  }, */
   // prettier-ignore
   "hyperdrive": [
-    { "binding": "HYPERDRIVE_CACHED", "id": "your-hyperdrive-cached-id-here" },
-    { "binding": "HYPERDRIVE_DIRECT", "id": "your-hyperdrive-direct-id-here" }
+    { "binding": "HYPERDRIVE_CACHED", "id": "bf0c326b9c0c43cda417f552469ac67d" },
+    { "binding": "HYPERDRIVE_DIRECT", "id": "3be9497ddcdb4102acf1a2aeac258e03" }
   ],
   "kv_namespaces": [],
 
@@ -34,20 +34,20 @@
         "ENVIRONMENT": "development",
         "APP_NAME": "Example",
         "APP_ORIGIN": "http://localhost:5173",
-        "ALLOWED_ORIGINS": "http://localhost:5173,http://127.0.0.1:5173",
-        "RESEND_EMAIL_FROM": "onboarding@resend.dev"
+        "ALLOWED_ORIGINS": "http://localhost:5173,http://127.0.0.1:5173"
+        // "RESEND_EMAIL_FROM": "onboarding@resend.dev"
       },
       // prettier-ignore
       "hyperdrive": [
-        { "binding": "HYPERDRIVE_CACHED", "id": "your-dev-hyperdrive-cached-id-here" },
-        { "binding": "HYPERDRIVE_DIRECT", "id": "your-dev-hyperdrive-direct-id-here" }
+        { "binding": "HYPERDRIVE_CACHED", "id": "281c1ee9219742f7ad3a72b4b6f62f9d" },
+        { "binding": "HYPERDRIVE_DIRECT", "id": "3be9497ddcdb4102acf1a2aeac258e03" }
       ],
       "kv_namespaces": []
-    },
+    }
 
     // [ENV:STAGING]
     // Command: bun wrangler deploy --env staging
-    "staging": {
+    /*   "staging": {
       "vars": {
         "ENVIRONMENT": "staging",
         "APP_NAME": "Example",
@@ -61,11 +61,11 @@
         { "binding": "HYPERDRIVE_DIRECT", "id": "your-staging-hyperdrive-direct-id-here" }
       ],
       "kv_namespaces": []
-    },
+    }, */
 
     // [ENV:PREVIEW]
     // Command: bun wrangler deploy --env preview
-    "preview": {
+    /* "preview": {
       "vars": {
         "ENVIRONMENT": "preview",
         "APP_NAME": "Example",
@@ -79,6 +79,6 @@
         { "binding": "HYPERDRIVE_DIRECT", "id": "your-preview-hyperdrive-direct-id-here" }
       ],
       "kv_namespaces": []
-    }
+    } */
   }
 }

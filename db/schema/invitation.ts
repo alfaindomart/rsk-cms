@@ -1,6 +1,6 @@
 // Better Auth invitation system for organization and team invites
 
-import { relations, sql } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import {
   index,
   pgEnum,
@@ -8,6 +8,7 @@ import {
   text,
   timestamp,
   unique,
+  uuid,
 } from "drizzle-orm/pg-core";
 import { organization } from "./organization";
 import { team } from "./team";
@@ -37,19 +38,17 @@ export type InvitationStatus = (typeof invitationStatusEnum.enumValues)[number];
 export const invitation = pgTable(
   "invitation",
   {
-    id: text()
-      .primaryKey()
-      .default(sql`gen_random_uuid()`),
+    id: uuid().primaryKey().defaultRandom(),
     email: text().notNull(),
-    inviterId: text()
+    inviterId: uuid()
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),
-    organizationId: text()
+    organizationId: uuid()
       .notNull()
       .references(() => organization.id, { onDelete: "cascade" }),
     role: text().notNull(),
     status: invitationStatusEnum().default("pending").notNull(),
-    teamId: text().references(() => team.id, { onDelete: "cascade" }),
+    teamId: uuid().references(() => team.id, { onDelete: "cascade" }),
     expiresAt: timestamp({ withTimezone: true, mode: "date" }).notNull(),
     acceptedAt: timestamp({ withTimezone: true, mode: "date" }),
     rejectedAt: timestamp({ withTimezone: true, mode: "date" }),

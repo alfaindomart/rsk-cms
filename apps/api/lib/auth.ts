@@ -77,7 +77,6 @@ export function createAuth(
         session: Db.session,
         user: Db.user,
         verification: Db.verification,
-        
       },
     }),
 

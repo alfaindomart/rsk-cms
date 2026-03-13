@@ -1,4 +1,4 @@
-import { auth } from "@/lib/auth";
+import { auth } from "@/lib/auth"; //better auth client instance
 import type { FormEvent } from "react";
 import { useCallback, useRef, useState } from "react";
 

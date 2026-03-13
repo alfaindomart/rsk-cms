@@ -38,10 +38,10 @@
         // "RESEND_EMAIL_FROM": "onboarding@resend.dev"
       },
       // prettier-ignore
-      "hyperdrive": [
-        { "binding": "HYPERDRIVE_CACHED", "id": "281c1ee9219742f7ad3a72b4b6f62f9d" },
-        { "binding": "HYPERDRIVE_DIRECT", "id": "3be9497ddcdb4102acf1a2aeac258e03" }
-      ],
+      // "hyperdrive": [
+      //   { "binding": "HYPERDRIVE_CACHED", "id": "281c1ee9219742f7ad3a72b4b6f62f9d" },
+      //   { "binding": "HYPERDRIVE_DIRECT", "id": "3be9497ddcdb4102acf1a2aeac258e03" }
+      // ],
       "kv_namespaces": []
     }
 
